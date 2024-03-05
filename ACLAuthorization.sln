@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACLAuthorization", "ACLAuthorization\ACLAuthorization.csproj", "{8A894E57-0236-46CC-A6B9-17CE1ADAFF29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A894E57-0236-46CC-A6B9-17CE1ADAFF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A894E57-0236-46CC-A6B9-17CE1ADAFF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A894E57-0236-46CC-A6B9-17CE1ADAFF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A894E57-0236-46CC-A6B9-17CE1ADAFF29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7C6A974-9428-4C76-99C3-B69CDDBC1D1A}
+	EndGlobalSection
+EndGlobal
