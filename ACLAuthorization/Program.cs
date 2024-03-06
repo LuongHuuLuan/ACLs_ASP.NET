@@ -126,12 +126,6 @@ builder.Services.AddAuthorization(options =>
                 }
 
             }
-            //httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
-            //httpContext.Response.ContentType = "application/json";
-            //httpContext.Response.StatusCode = 403;
-            //await httpContext.Response.WriteAsync("Bạn không có quyền truy cập vào tài nguyên này.");
-            //httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
-            //await httpContext.Response.WriteAsync("Bạn không có quyền truy cập vào tài nguyên này.");
             return canAccess;
         }));
 });

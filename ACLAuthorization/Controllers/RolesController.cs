@@ -100,6 +100,77 @@ namespace ACLAuthorization.Controllers
 
         }
 
+        // add permission
+        [HttpPost("Permissions/{id}/Add")]
+        public async Task<ActionResult<RoleResponse>> AddPermission(int id, [FromBody] int[] permissionIds)
+        {
+            var role = await _context.roles.Include(role => role.Permissions).Where(role => role.Id == id).FirstOrDefaultAsync();
+            var existingPermissionIds = role.Permissions.Select(p => p.Id).ToList();
+            if (role == null)
+            {
+                return NotFound($"Role with ID {id} not found");
+            }
+
+            foreach (var permissionId in permissionIds)
+            {
+
+                if (existingPermissionIds.Contains(permissionId))
+                {
+                    return BadRequest($"Permission with ID {permissionId} exist in role {role.Id}");
+                }
+                else
+                {
+                    var permission = await _context.permissions.FindAsync(permissionId);
+                    if (permission == null)
+                    {
+                        return NotFound($"Permission with ID {permissionId} not found");
+                    }
+                    role.Permissions.Add(permission);
+                }
+            }
+            await _context.SaveChangesAsync();
+
+            return Ok(new RoleResponse(role));
+        }
+
+        // remove permission
+        [HttpPost("Permissions/{id}/Remove")]
+        public async Task<ActionResult<RoleResponse>> RemovePermission(int id, [FromBody] int[] permissionIds)
+        {
+            var role = await _context.roles.Include(role => role.Permissions).Where(role => role.Id == id).FirstOrDefaultAsync();
+            if (role == null)
+            {
+                return NotFound($"Role with ID {id} not found");
+            }
+
+            var existingPermissionIds = role.Permissions.Select(p => p.Id).ToList();
+            if (role == null)
+            {
+                return NotFound();
+            }
+
+            foreach (var permissionId in permissionIds)
+            {
+
+                if (!existingPermissionIds.Contains(permissionId))
+                {
+                    return BadRequest($"Permission with ID {permissionId} does not exist in role {role.Id}");
+                }
+                else
+                {
+                    var permission = await _context.permissions.FindAsync(permissionId);
+                    if (permission == null)
+                    {
+                        return NotFound($"Permission with ID {permissionId} not found");
+                    }
+                    role.Permissions.Remove(permission);
+                }
+            }
+            await _context.SaveChangesAsync();
+
+            return Ok(new RoleResponse(role));
+        }
+
         // DELETE: api/role/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRole(int id)
